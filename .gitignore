@@ -1,0 +1,16 @@
+node_modules
+dist
+out
+.DS_Store
+*.log
+/data
+backend/data
+contracts/cache
+contracts/out
+contracts/broadcast
+video/out
+video/public/recording
+.remotion
+frontend/public/og.png.tmp
+
+.env

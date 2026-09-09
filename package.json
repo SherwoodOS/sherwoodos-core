@@ -1,0 +1,28 @@
+{
+  "name": "sherwoodos-core",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Sherwood OS — backend, x402 facilitator and on-chain contracts (Robinhood Chain)",
+  "workspaces": [
+    "backend"
+  ],
+  "scripts": {
+    "dev": "bun run --watch backend/src/index.ts",
+    "start": "bun run backend/src/index.ts",
+    "dev:chain": "anvil --fork-url ${FORK_RPC_URL:-https://robinhood.drpc.org} --chain-id 4663 --port 8663 --state ./data/anvil-state.json --state-interval 30",
+    "typecheck": "bun run --cwd backend typecheck",
+    "contracts:build": "cd contracts && forge build && cd .. && bun run scripts/copy-artifacts.ts",
+    "contracts:test": "cd contracts && FORK_RPC_URL=${FORK_RPC_URL:-http://127.0.0.1:8663} forge test -vv",
+    "gen:keys": "bun run scripts/gen-keys.ts",
+    "deploy:mainnet": "bun run backend/scripts/deploy-mainnet.ts",
+    "handover": "bun run backend/scripts/handover.ts",
+    "fund:agents": "bun run backend/scripts/fund-agents.ts",
+    "swap:fund": "bun run backend/scripts/swap-fund.ts",
+    "audit:x402": "bun run backend/scripts/x402-audit.ts",
+    "docker:build": "docker build -t sherwoodos-core .",
+    "docker:run": "docker run --rm -p 3000:3000 --env-file .env -v sherwood-data:/data sherwoodos-core"
+  },
+  "engines": {
+    "bun": ">=1.2"
+  }
+}

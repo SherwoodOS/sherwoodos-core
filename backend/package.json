@@ -1,0 +1,21 @@
+{
+  "name": "backend",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run --watch src/index.ts",
+    "start": "bun run src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "chain:fork": "anvil --fork-url ${FORK_RPC_URL:-https://rpc.mainnet.chain.robinhood.com} --chain-id 4663 --port 8663 --state ./data/anvil-state.json --state-interval 30",
+    "deploy:mainnet": "bun run scripts/deploy-mainnet.ts"
+  },
+  "dependencies": {
+    "hono": "^4.13.7",
+    "viem": "^2.56.5"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.11",
+    "typescript": "^5.9.3"
+  }
+}
